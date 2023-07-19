@@ -41,7 +41,7 @@ describe("socket.io-parser", () => {
   it("encodes an event (with an integer as event name)", () => {
     return helpers.test({
       type: PacketType.EVENT,
-      data: [1, "a", {}],
+      data: [1, "a", {}, 123123123123123123123n],
       nsp: "/",
     });
   });
