@@ -236,5 +236,13 @@ describe("socket.io-parser", () => {
         data: ["disconnect", "123"],
       })
     ).to.eql(false);
+
+    expect(
+      isPacketValid({
+        type: 2,
+        nsp: "/",
+        data: { bigNumber: 123n },
+      })
+    ).to.eql(false);
   });
 });

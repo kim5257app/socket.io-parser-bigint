@@ -2,11 +2,9 @@ import { Emitter } from "@socket.io/component-emitter";
 import { deconstructPacket, reconstructPacket } from "./binary.js";
 import { isBinary, hasBinary } from "./is-binary.js";
 import debugModule from "debug"; // debug()
-import * as JSONB from "json-bigint";
+import JSONB from './json-bigint';
 
 const debug = debugModule("socket.io-parser"); // debug()
-
-const JSONBigInt = JSONB({ useNativeBigInt: true });
 
 /**
  * These strings must not be used as event names, as they have a special meaning.
@@ -112,7 +110,7 @@ export class Encoder {
     // json data
     if (null != obj.data) {
       // str += JSON.stringify(obj.data, this.replacer);
-      str += JSONBigInt.stringify(obj.data, this.replacer);
+      str += JSONB.stringify(obj.data, this.replacer);
     }
 
     debug("encoded %j as %s", obj, str);
@@ -276,7 +274,7 @@ export class Decoder extends Emitter<{}, {}, DecoderReservedEvents> {
   private tryParse(str) {
     try {
       // return JSON.parse(str, this.reviver);
-      return JSONBigInt.parse(str, this.reviver);
+      return JSONB.parse(str, this.reviver);
     } catch (e) {
       return false;
     }
