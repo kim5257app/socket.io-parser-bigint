@@ -1,6 +1,6 @@
 export function parseJSON(text: string, reviver?: (this: any, key: string, value: any) => any): any {
   return JSON.parse(text, (k, v) => {
-    if (typeof v === 'string' && /^BigInt\([0-9]*\)/.test(v)) {
+    if (typeof v === 'string' && /^BigInt\([+-]?[0-9]*\)/.test(v)) {
       v = BigInt(v.slice(7, -1));
     }
     return typeof reviver === 'function' ? reviver(k, v) : v

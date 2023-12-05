@@ -1,6 +1,6 @@
 {
   "name": "@kim5257/socket.io-parser-bigint",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "socket.io protocol parser",
   "repository": {
     "type": "git",
